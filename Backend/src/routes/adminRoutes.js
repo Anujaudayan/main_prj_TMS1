@@ -128,19 +128,19 @@ function router(tokverify){
  
      });
     
-     adminrouter.get('/allocation/:id',tokverify,function(req,res){
+     adminrouter.get('/allocation',tokverify,function(req,res){
         
-      const id = req.params.id;
+      const id = req.body._id;
       
          
           
-        Trainerdata.findByIdAndUpdate(id,{$set:{"startdate":req.body.traineralloc.startdate,
-          "enddate":req.body.traineralloc.enddate,
-          "time":req.body.traineralloc.time,
-          "coursename":req.body.traineralloc.coursename,
-          "courseid":req.body.traineralloc.courseid,
-          "batchid":req.body.traineralloc.batchid,
-          "meetingvenue":req.body.traineralloc.meetingvenue} 
+        Trainerdata.findByIdAndUpdate(id,{$set:{"startdate":req.body.startdate,
+          "enddate":req.body.enddate,
+          "time":req.body.time,
+          "coursename":req.body.coursename,
+          "courseid":req.body.courseid,
+          "batchid":req.body.batchid,
+          "meetingvenue":req.body.meetingvenue} 
         
         })
          .then(function(trainers){
