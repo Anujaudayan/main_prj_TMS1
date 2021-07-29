@@ -64,6 +64,13 @@ courses:any;
     return this.http.get("http://localhost:3000/userhome/trainerprofile/"+email);
   };
 
+
+  editTrainer(trainer:any)
+  {   
+    console.log(`editTrainer : ${trainer.name}`);
+   return this.http.put("http://localhost:3000/update",trainer)
+     .subscribe(data =>{console.log(data)})
+  }
  
   AcceptTrainer(id:any){
     return this.http.get("http://localhost:3000/adminhome/requests/accept/"+id)
@@ -78,6 +85,7 @@ EditTrainer(trainer:any){
    newAllocation(trainer : any)
   {
     const formData = new FormData();
+    formData.append('_id', trainer._id);
     formData.append('startdate', trainer.startdate); 
     formData.append('enddate', trainer.enddate); 
     formData.append('time', trainer.time); 
@@ -86,13 +94,36 @@ EditTrainer(trainer:any){
     formData.append('batchid', trainer.batchid ); 
     formData.append('meetingvenue', trainer.meetingvenue ); 
    
-    return this.http.post<any>('http://localhost:3000/adminhome/allocation',formData);
+    return this.http.put<any>('http://localhost:3000/adminhome/allocation',formData);
     
   }
 
   getTrainer1(id:any){
     return this.http.get("http://localhost:3000/adminhome/allocation/"+id);
+
   };
+  
+   deleteTrainer(id:any)
+  {
+
+    return this.http.delete("http://localhost:3000/adminhome/trainerprofiles/delete/"+id)
+
+  }
+
+ 
+
+  allocateTrainer(trainer:any)
+  {
+    return this.http.get("http://localhost:3000/trainerprofiles/allocate/",trainer)
+    
+  }
+  
+  
+  getTrainer2(){
+    return this.http.get("http://localhost:3000/adminhome/trainerprofiles" );
+
+  };
+
 
   
 }
