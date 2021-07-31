@@ -16,9 +16,21 @@
     <div class="col-md-4">
         <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
       </div>
-      
+      <ng-template #customCellTemplate let-day="day" let-locale="locale">
+        <div class="cal-cell-top">
+            <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+                >{{events[0].title}}</span
+              >
+           
+        
+          <span class="cal-day-number"
+            >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span
+          >
+        </div>
+        
+      </ng-template>    
      
-<mwl-calendar-month-view (dayClicked)="dayClicked($event.day)"[viewDate]="viewDate"[events]="events">
+<mwl-calendar-month-view (dayClicked)="dayClicked($event.day)"[viewDate]="viewDate"[events]="events" [cellTemplate]="customCellTemplate">
 </mwl-calendar-month-view>
 
     

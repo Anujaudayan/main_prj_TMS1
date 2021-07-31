@@ -15,7 +15,7 @@ export class CalenderComponent implements OnInit {
   events: CalendarEvent[] = [
     {
       start: new Date('2021-07-30'),
-      title: 'An event with no end date',
+      title: 'FSD_01 for batch 02',
 
     }
   ]
