@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
 import { CalendarEvent } from 'calendar-utils';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -26,8 +26,14 @@ export class CalenderComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    alert('Event name:'+events[0].title+',Time:11:00 AM,Venue:Iris conference hall')
+    
+    Swal.fire({
+      icon:'info',
+      title:'Event notification',
+      html:`<p> Time:11:00 AM <br>Venue:Iris conference hall</p>`
+    })
     //this.openAppointmentList(date)
   }
  

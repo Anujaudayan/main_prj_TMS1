@@ -16,10 +16,10 @@
     <div class="col-md-4">
         <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
       </div>
-    
-    
-    
-<mwl-calendar-month-view (dayClicked)="dayClicked($event.day)"[viewDate]="viewDate" [events]="events">
+      
+     
+<mwl-calendar-month-view (dayClicked)="dayClicked($event.day)"[viewDate]="viewDate"[events]="events">
 </mwl-calendar-month-view>
+
     
 </div>

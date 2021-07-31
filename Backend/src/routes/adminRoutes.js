@@ -128,7 +128,7 @@ function router(tokverify){
  
      });
     
-     adminrouter.get('/allocation',tokverify,function(req,res){
+     adminrouter.put('/allocation',tokverify,function(req,res){
         
       const id = req.body._id;
       
