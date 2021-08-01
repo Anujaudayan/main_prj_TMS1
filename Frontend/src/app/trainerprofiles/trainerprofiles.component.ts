@@ -20,6 +20,10 @@ export class TrainerprofilesComponent implements OnInit {
   
     alertMsg : any ='';
   
+  search={
+      text:''
+    }
+  
     trainer={
       name:'',
       email:'',
@@ -80,6 +84,13 @@ export class TrainerprofilesComponent implements OnInit {
     this.router.navigate(['allocation']);
 
   } 
+  
+   Search(formValue:NgForm){
+    this.trainersObj.searchTrainer(this.search.text)
+      .subscribe((trainer)=>{
+        this.trainersdata = trainer;
+        console.log(this.trainersdata);
+   })
   }
 
 

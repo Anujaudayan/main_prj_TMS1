@@ -119,6 +119,9 @@ EditTrainer(trainer:any){
 
   };
 
+ searchTrainer(search:any){
+    return this.http.put("http://localhost:3000/adminhome/trainerprofiles/search",{"search":search})
+  }
 
   
 }
