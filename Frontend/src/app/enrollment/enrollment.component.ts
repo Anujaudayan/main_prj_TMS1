@@ -47,7 +47,7 @@ export class EnrollmentComponent implements OnInit {
 
   verify(formValue:NgForm){
   
-    this.trainer.photo = this.trainer.photo.replace('C:\\fakepath\\','');
+   // this.trainer.photo = this.trainer.photo.replace('C:\\fakepath\\','');
     this.trainerObj.newTrainer(this.image, this.trainer).subscribe((data)=>{
       if(data.message!=""){
         alert("Trainer already exists.Please change email");}

@@ -51,6 +51,8 @@ app.use('/userhome/form',userrouter);
 app.use('/userhome/trainerprofile',userrouter);
 app.use('/userhome/trainerprofile/edit',userrouter);
 app.use('/adminhome/requests',adminrouter);
+app.use('/adminhome/trainer',adminrouter);
+app.use('/adminhome/calender',adminrouter);
 app.use('/adminhome/requests/accept',adminrouter);
 app.use('/adminhome/requests/delete', adminrouter);
 app.use('/adminhome/allocation',adminrouter);

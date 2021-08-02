@@ -38,7 +38,7 @@ getloguser(){
   isapproved(){
   let apstatus=localStorage.getItem('Approvalstatus');
 
-    if(apstatus){
+    if(apstatus=='true'){
       return true;
     }
     else{

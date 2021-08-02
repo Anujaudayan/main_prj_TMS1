@@ -29,17 +29,31 @@ function router(tokverify){
       });
 
    
-    // adminrouter.get('/requests/:id',function(req,res){
-    //     const id = req.params.id;
-    //    Trainerdata.findOne({_id:id}) 
+    adminrouter.get('/trainer/:id',function(req,res){
+        const id = req.params.id;
         
-    //     .then(function(trainers){
-    //         res.send(trainers);
-    //       })
+      Trainerdata.findOne({_id:id}) 
+        
+       .then(function(trainers){
+        
+           res.send(trainers);
+        })
 
-    // });
-    
-    
+     });
+     adminrouter.get('/calender/:email',function(req,res){
+      const emailc = req.params.email;
+     
+    Trainerdata.findOne({email:emailc}) 
+      
+     .then(function(trainers){
+     // Trainerdata.aggregate([{$project:{startdatereformat:{$dateToString:{ format: "%Y-%m-%d",timezone: "+05:30", date: "$startdate" }},
+     // enddatereformat:{$dateToString:{ format: "%Y-%m-%d",timezone: "+05:30", date: "$enddate" }},startdate:1,enddate:1,time:1,coursename:1,courseid:1,batchid:1,meetingvenue:1}}])
+     console.log(trainers);
+         res.send(trainers);
+      })
+
+   });
+     
     adminrouter.get('/requests/accept/:id',tokverify,function(req,res){
         
      const id = req.params.id;
@@ -129,21 +143,19 @@ function router(tokverify){
      });
     
      adminrouter.put('/allocation',tokverify,function(req,res){
-        
-      const id = req.body._id;
       
-         
           
-        Trainerdata.findByIdAndUpdate(id,{$set:{"startdate":req.body.startdate,
-          "enddate":req.body.enddate,
-          "time":req.body.time,
-          "coursename":req.body.coursename,
-          "courseid":req.body.courseid,
-          "batchid":req.body.batchid,
-          "meetingvenue":req.body.meetingvenue} 
+        Trainerdata.findOneAndUpdate({"email":req.body.trainer.email},{$set:{"startdate":req.body.trainer.startdate,
+          "enddate":req.body.trainer.enddate,
+          "time":req.body.trainer.time,
+          "coursename":req.body.trainer.coursename,
+          "courseid":req.body.trainer.courseid,
+          "batchid":req.body.trainer.batchid,
+          "meetingvenue":req.body.trainer.meetingvenue} 
         
         })
          .then(function(trainers){
+         
            var mailOptions = {
              from: 'tmsadmn@gmail.com',
               to: trainers.email,

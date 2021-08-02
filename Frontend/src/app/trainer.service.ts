@@ -26,7 +26,8 @@ export class TrainerService {
     coursename:'',
     courseid:'',
     batchid:'',
-    meetingvenue:''
+    meetingvenue:'',
+    _id:''
   }
   
    User= {
@@ -63,8 +64,12 @@ courses:any;
   getTrainer(email:any){
     return this.http.get("http://localhost:3000/userhome/trainerprofile/"+email);
   };
-
-
+  trainer_access(id:any){
+    return this.http.get("http://localhost:3000/adminhome/trainer/"+id);
+  }
+  calendar_access(email:any){
+    return this.http.get("http://localhost:3000/adminhome/calender/"+email);
+  }
   editTrainer(trainer:any)
   {   
     console.log(`editTrainer : ${trainer.name}`);
@@ -84,17 +89,19 @@ EditTrainer(trainer:any){
 }
    newAllocation(trainer : any)
   {
-    const formData = new FormData();
-    formData.append('_id', trainer._id);
-    formData.append('startdate', trainer.startdate); 
-    formData.append('enddate', trainer.enddate); 
-    formData.append('time', trainer.time); 
-    formData.append('coursename', trainer.coursename); 
-    formData.append('courseid', trainer.courseid); 
-    formData.append('batchid', trainer.batchid ); 
-    formData.append('meetingvenue', trainer.meetingvenue ); 
+  
+    // const formData = new FormData();
+    // formData.append('_id', IDE);
+    // formData.append('startdate', trainer.startdate); 
+    // formData.append('enddate', trainer.enddate); 
+    // formData.append('time', trainer.time); 
+    // formData.append('coursename', trainer.coursename); 
+    // formData.append('courseid', trainer.courseid); 
+    // formData.append('batchid', trainer.batchid ); 
+    // formData.append('meetingvenue', trainer.meetingvenue ); 
    
-    return this.http.put<any>('http://localhost:3000/adminhome/allocation',formData);
+    return this.http.put<any>('http://localhost:3000/adminhome/allocation',{"trainer":trainer})
+    
     
   }
 

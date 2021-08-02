@@ -38,7 +38,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
-
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -84,7 +84,7 @@ import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.comp
     })
   
   ],
-  providers: [AuthService, AuthGuard, TrainerService,
+  providers: [DatePipe,AuthService, AuthGuard, TrainerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

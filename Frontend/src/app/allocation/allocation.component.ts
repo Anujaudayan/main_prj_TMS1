@@ -36,14 +36,21 @@ export class AllocationComponent implements OnInit {
     trainerId:''
 
   }
+  
+  IDE:any;
   constructor(public trainerObj : TrainerService, private router:Router, private http : HttpClient) { }
 
   ngOnInit(): void {
- let trainerId = localStorage.getItem('trainerId');
-
+    this.IDE=localStorage.getItem('allocateTrainerId');
+    this.trainerObj.trainer_access(this.IDE).subscribe((data)=>{
+      this.trainer=JSON.parse(JSON.stringify(data));
+  })
 }
 verify1(formValue:NgForm){
-  this.trainerObj.newAllocation( this.trainer).subscribe((data)=>{
+
+ 
+ 
+  this.trainerObj.newAllocation(this.trainer).subscribe((data)=>{
     
         alert("Allocation done successfully");
         this.router.navigate(['/trainerprofiles']);   
