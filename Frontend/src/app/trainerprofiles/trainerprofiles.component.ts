@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TrainerService } from '../trainer.service';
 import { AuthService } from '../auth.service';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 
 @Component({
