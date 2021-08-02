@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TrainerService } from '../trainer.service';
 import { AuthService } from '../auth.service';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +20,10 @@ export class TrainerprofilesComponent implements OnInit {
     showImage  : boolean = true;
   
     alertMsg : any ='';
+  
+  search={
+      text:''
+    }
   
     trainer={
       name:'',
@@ -80,6 +85,13 @@ export class TrainerprofilesComponent implements OnInit {
     this.router.navigate(['allocation']);
 
   } 
+  
+   Search(formValue:NgForm){
+    this.trainersObj.searchTrainer(this.search.text)
+      .subscribe((trainer)=>{
+        this.trainersdata = trainer;
+        console.log(this.trainersdata);
+   })
   }
 
 
