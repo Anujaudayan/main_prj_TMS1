@@ -236,11 +236,11 @@ res.send();
 
 //   Search
  
-  adminrouter.get('/trainerprofiles/search',tokverify,function(req,res){
+  adminrouter.put('/trainerprofiles/search',tokverify,function(req,res){
 
   var regex = new RegExp(req.body.search.text,'i');
   
-  Trainerdata.find({$or: [{name:regex}, {skillset:regex},{coursedata:regex},{employment:regex}]})
+  Trainerdata.find({$or: [{name:regex}, {skillset:regex},{ictakcourses:regex},{employment:regex}]})
   
   .then(function(trainers){
     res.send(trainers);

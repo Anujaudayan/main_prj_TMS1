@@ -87,11 +87,11 @@ export class TrainerprofilesComponent implements OnInit {
   } 
   
    Search(formValue:NgForm){
-    this.trainersObj.searchTrainer(this.search.text)
+    this.trainersObj.searchTrainer(this.search)
       .subscribe((trainer)=>{
         this.trainersdata = trainer;
         console.log(this.trainersdata);
    })
   }
 
-
+}

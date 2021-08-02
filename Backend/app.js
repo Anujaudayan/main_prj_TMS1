@@ -52,6 +52,7 @@ app.use('/userhome/trainerprofile',userrouter);
 app.use('/userhome/trainerprofile/edit',userrouter);
 app.use('/adminhome/requests',adminrouter);
 app.use('/adminhome/trainer',adminrouter);
+app.use('/adminhome/trainerprofiles/search',adminrouter);
 app.use('/adminhome/calender',adminrouter);
 app.use('/adminhome/requests/accept',adminrouter);
 app.use('/adminhome/requests/delete', adminrouter);
