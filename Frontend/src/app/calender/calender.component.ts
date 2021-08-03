@@ -32,6 +32,26 @@ export class CalenderComponent implements OnInit {
   courseid:'',
   batchid:'',
   meetingvenue:''}
+  trainers=[{ name:'',
+  email:'',
+  phone:'',
+  address:'',
+  qualification:'',
+  skillset:'',
+  company:'',
+  designation:'',
+  ictakcourses:'',
+  photo:'',
+  ID:'',
+  employment:'',
+  approved:'',
+  startdate:'',
+  enddate:'',
+  time:'',
+  coursename:'',
+  courseid:'',
+  batchid:'',
+  meetingvenue:''}]
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   startdate:any;
@@ -48,7 +68,24 @@ export class CalenderComponent implements OnInit {
     
     let cuser=localStorage.getItem('currentUser');
     this.trainerObj.calendar_access(cuser)
-    .subscribe((data)=>{ this.trainer=JSON.parse(JSON.stringify(data));
+    .subscribe((data)=>{ 
+      if(cuser=="tmsadmn@gmail.com"){
+        this.trainers=JSON.parse(JSON.stringify(data));
+        for(let tr of this.trainers){
+          this.startdate= this.datepipe.transform(tr.startdate,'yyyy-MM-dd','+0530');
+      this.enddate=this.datepipe.transform(tr.enddate,'yyyy/MM/dd','+0530')
+      this.events=[
+
+        {
+          start:new Date(this.startdate),
+          end:new Date(this.enddate),
+          title:tr.courseid
+      }
+    ]
+        }
+      }
+      else{
+      this.trainer=JSON.parse(JSON.stringify(data));
      this.startdate= this.datepipe.transform(this.trainer.startdate,'yyyy-MM-dd','+0530');
       this.enddate=this.datepipe.transform(this.trainer.enddate,'yyyy/MM/dd','+0530')
       this.events=[
@@ -57,18 +94,28 @@ export class CalenderComponent implements OnInit {
           end:new Date(this.enddate),
           title:this.trainer.courseid
       }
-    ]
+    ]}
       })
   }
   
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    
-    Swal.fire({
+    let cuser=localStorage.getItem('currentUser');
+    if(cuser!="tmsadmn@gmail.com")
+    {Swal.fire({
       icon:'info',
       title:this.trainer.coursename,
       html:`<p> Time:${this.trainer.time} <br>Batchid:${this.trainer.batchid}<br>Venue:${this.trainer.meetingvenue}</p>`
-    })
-    //this.openAppointmentList(date)
+    })}
+    else{
+     for(let trainer of this.trainers){
+      Swal.fire({
+        icon:'info',
+        title:trainer.coursename,
+        html:`<p> Time:${trainer.time} <br>Batchid:${trainer.batchid}<br>Venue:${trainer.meetingvenue}</p>`
+      })
+     }
+    }
+    
   }
  
 }

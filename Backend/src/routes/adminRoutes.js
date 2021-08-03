@@ -42,16 +42,20 @@ function router(tokverify){
      });
      adminrouter.get('/calender/:email',function(req,res){
       const emailc = req.params.email;
-     
+     if(emailc=="tmsadmn@gmail.com"){
+      Trainerdata.find() 
+      
+     .then(function(trainers){
+       res.send(trainers);})
+     }
+     else{
     Trainerdata.findOne({email:emailc}) 
       
      .then(function(trainers){
-     // Trainerdata.aggregate([{$project:{startdatereformat:{$dateToString:{ format: "%Y-%m-%d",timezone: "+05:30", date: "$startdate" }},
-     // enddatereformat:{$dateToString:{ format: "%Y-%m-%d",timezone: "+05:30", date: "$enddate" }},startdate:1,enddate:1,time:1,coursename:1,courseid:1,batchid:1,meetingvenue:1}}])
-     console.log(trainers);
+     
          res.send(trainers);
       })
-
+    }
    });
      
     adminrouter.get('/requests/accept/:id',tokverify,function(req,res){

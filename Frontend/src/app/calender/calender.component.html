@@ -17,11 +17,12 @@
         <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
       </div>
       <ng-template #customCellTemplate let-day="day" let-locale="locale">
-        <div class="cal-cell-top">
-            <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
-                >{{events[0].title}}</span
+        <div class="cal-cell-top" >
+            <div *ngFor="let event of events">
+            <span class="cal-day-badge" *ngIf="day.badgeTotal > 0" 
+                >{{event.title}}</span
               >
-           
+           </div>
         
           <span class="cal-day-number"
             >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span
