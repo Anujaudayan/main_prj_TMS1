@@ -75,7 +75,7 @@ export class TrainerprofilesComponent implements OnInit {
   editTrainer(trainer:any)
   {
     localStorage.setItem("editTrainerId", trainer._id.toString());
-    this.router.navigate(['update']);
+    this.router.navigate(['edit']);
 
   }
     
