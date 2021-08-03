@@ -1,6 +1,22 @@
-body {
-background-color: rgb(143, 102, 219);
+.container{
+    padding-top: 3%;
+/* background-color: rgb(187, 14, 178); */
+padding-bottom: 3%;
+border-width: 20px;
+border-color: rgb(99, 15, 168);
+box-shadow: 0px 0px 10px 0px rgb(128, 16, 219);
+border-radius: 30px;
+border-block-end-width: 10px;
+border: solid 1px #dad7db;
+    
 
+
+}
+.text-right{
+    font-size: 40px;
+    font-weight:20px;
+    /* color: rgb(105, 27, 27); */
+    text-align: center;
 }
 
 .form-control:focus {
@@ -34,7 +50,8 @@ background-color: rgb(143, 102, 219);
 }
 
 .labels {
-    font-size: 11px
+    font-size: 1rem;
+    padding-top: 10px;
 }
 
 .add-experience:hover {
