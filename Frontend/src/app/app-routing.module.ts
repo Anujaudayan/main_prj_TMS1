@@ -13,6 +13,7 @@ import { RequestComponent } from './request/request.component';
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
+import { EditTrainerComponent } from './edit-trainer/edit-trainer.component';
 
 const routes: Routes = [
   {path:'' , component:LoginComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path:'request' , component:RequestComponent},
    {path: 'profile', component:TrainerProfileComponent},
      {path:'allocation', component:AllocationComponent},
-  {path: 'trainerprofiles',component:TrainerprofilesComponent}
+  {path: 'trainerprofiles',component:TrainerprofilesComponent},
+   {path:'edit',component:EditTrainerComponent}
 ];
 
 @NgModule({
