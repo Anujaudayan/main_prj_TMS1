@@ -57,6 +57,8 @@ app.use('/adminhome/calender',adminrouter);
 app.use('/adminhome/requests/accept',adminrouter);
 app.use('/adminhome/requests/delete', adminrouter);
 app.use('/adminhome/allocation',adminrouter);
+app.use('/adminhome/trainerprofiles',adminrouter);
+app.use('/adminhome/trainerprofiles/edit',adminrouter);
 
 //signup call for backend//
 app.post('/signup',function(req,res){
