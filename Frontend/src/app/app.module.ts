@@ -39,6 +39,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TrainerprofilesComponent } from './trainerprofiles/trainerprofiles.component';
 import { DatePipe } from '@angular/common';
+import { EditTrainerComponent } from './edit-trainer/edit-trainer.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DatePipe } from '@angular/common';
     RequestComponent,
     TrainerProfileComponent,
      AllocationComponent,
-    TrainerprofilesComponent
+    TrainerprofilesComponent,
+     EditTrainerComponent
    
   ],
   imports: [

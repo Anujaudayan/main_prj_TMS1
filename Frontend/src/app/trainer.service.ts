@@ -129,6 +129,17 @@ EditTrainer(trainer:any){
  searchTrainer(search:any){
     return this.http.put("http://localhost:3000/adminhome/trainerprofiles/search",{"search":search})
   }
+  
+  editTrainers2(trainer:any)
+  {   
+    console.log(`editTrainers`);
+    
+   return this.http.put<any>("http://localhost:3000/adminhome/trainerprofiles/edit",trainer)
+  }
+
+  getTrainer4(id:any){
+    return this.http.get("http://localhost:3000/adminhome/trainerprofiles/"+id);
+  };
 
   
 }

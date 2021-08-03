@@ -202,6 +202,16 @@ function router(tokverify){
    })
 
 });
+  
+  adminrouter.get('/trainerprofiles/:id',tokverify,(req,res)=>{
+  const id=req.params.id;
+  
+  Trainerdata.findOne({$and:[{_id:id},{"approved":true}]})
+  .then(function(trainer){
+    res.send(trainer);
+  })
+}
+)
 
 
 adminrouter.post('/trainerprofiles/edit/:id',tokverify,function(req,res){
