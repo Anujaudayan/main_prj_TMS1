@@ -22,6 +22,9 @@ localStorage.removeItem('token')
 localStorage.removeItem('currentUser')
 localStorage.removeItem('Approvalstatus')
 localStorage.removeItem('allocateTrainerId')
+localStorage.removeItem('trainerAlertMsg')
+localStorage.removeItem("deleteTrainerId")
+localStorage.removeItem("editTrainerId")
 this._router.navigate(['/'])
 }
 
