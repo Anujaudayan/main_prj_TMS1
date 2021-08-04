@@ -119,32 +119,40 @@ function router(tokverify){
     
     
     adminrouter.delete('/requests/delete/:id',tokverify,function(req,res){
-               const id = req.params.id;
-        Trainerdata.deleteOne({_id:id},(err,resp)=>{
-            if(err){
-                console.log(err);
-            }
-            else{
-              console.log("deleted successfully");
-              var mailOptions = {
-                from: 'tmsadmn@gmail.com',
-                 to: req.body.email,
-                subject: 'Unfortunately you are not selected',
-                text: 'We are sorry that we cannot hire you at the moment.'
-              };
-              transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log('Email sent: ' + info.response);
-                }
-              });
+      const id = req.params.id;
+        
+      
+          Trainerdata.findOne({_id:id}) 
 
-            }
-            res.send();
+          .then(function(trainers){
+          var mailOptions = {
+            from: 'tmsadmn@gmail.com',
+             to: trainers.email,
+            subject: 'Unfortunately you are not selected',
+            text: 'We are sorry that we cannot hire you at the moment.'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } 
+            else {
+          console.log('Email sent: ' + info.response);}
+        })
+        });
+        Trainerdata.deleteOne({_id:id},(err,resp)=>{
+          if(err){
+              console.log(err);
+          }
+          else{
+            console.log("deleted successfully");
+          }
+      });
+
+    
+    res.send();
         })
  
-     });
+     
     
      adminrouter.put('/allocation',tokverify,function(req,res){
       

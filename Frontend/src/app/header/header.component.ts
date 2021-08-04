@@ -21,6 +21,7 @@ logoutUser()
 localStorage.removeItem('token')
 localStorage.removeItem('currentUser')
 localStorage.removeItem('Approvalstatus')
+localStorage.removeItem('allocateTrainerId')
 this._router.navigate(['/'])
 }
 
