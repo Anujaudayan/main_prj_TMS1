@@ -66,9 +66,9 @@ export class TrainerprofilesComponent implements OnInit {
 }
   
   deleteTrainer(trainer:any){
-    let TrainerId = localStorage.getItem("deleteAuthorId");
-    console.log('inside delete function deleteTrainerId ${trainer._id}');
-    this.trainersObj.getTrainer(TrainerId);
+     this.trainersObj.deleteTrainer(trainer._id)
+    .subscribe((data)=>{
+      this.trainers= this.trainers.filter(p => p!== trainer);
     alert("Trainer deleted");
   }
 
