@@ -166,7 +166,7 @@ function router(tokverify){
              subject: 'Trainer Allocation Details',
             
              html:`<p>'Your allocation is complete!!Please find the details below:<br>
-             StartDate:${trainers.startdate},Enddate:${trainers.enddate},Coursename:${trainers.coursename},CourseID:${trainers.courseid},BatchID:${trainers.batchid},meetingvenue:${trainers.meetingvenue}</p>`
+             StartDate:${req.body.trainer.startdate},Enddate:${req.body.trainer.enddate},Coursename:${req.body.trainer.coursename},CourseID:${req.body.trainer.courseid},BatchID:${req.body.trainer.batchid},meetingvenue:${req.body.trainer.meetingvenue}</p>`
            };
            transporter.sendMail(mailOptions, function(error, info){
              if (error) {
@@ -218,9 +218,16 @@ function router(tokverify){
 )
 
 
-adminrouter.post('/trainerprofiles/edit/:id',tokverify,function(req,res){
-  const id = req.params.id;
-
+adminrouter.put('/trainerprofiles/edit',tokverify,function(req,res){
+ coursedata='';
+ objcourse=JSON.parse(req.body.ictakcourses);
+                for(i=0;i<objcourse.length;i++){
+                    if(i==0){
+                    coursedata=coursedata.concat(objcourse[i].name)}
+                    else{
+                        coursedata=coursedata.concat(',',objcourse[i].name);
+                    }
+                }
   var item = {
     name:req.body.name,
     phone:req.body.phone,
@@ -231,10 +238,10 @@ adminrouter.post('/trainerprofiles/edit/:id',tokverify,function(req,res){
   designation:req.body.designation,
    ictakcourses:coursedata,
   approved:true,
-  employment:''
+  employment:req.body.employment
 }
 
-  Trainerdata.findByIdAndUpdate(id,item,(err,resp)=>{
+  Trainerdata.findOneAndUpdate({"email":req.body.email},item,(err,resp)=>{
 if(err){
    console.log(err);
 }

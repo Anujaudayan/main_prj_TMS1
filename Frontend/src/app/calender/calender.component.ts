@@ -5,6 +5,7 @@ import { TrainerService } from '../trainer.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { startOfDay,endOfDay } from 'date-fns';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -32,6 +33,7 @@ export class CalenderComponent implements OnInit {
   courseid:'',
   batchid:'',
   meetingvenue:''}
+
   trainers=[{ name:'',
   email:'',
   phone:'',
@@ -56,10 +58,8 @@ export class CalenderComponent implements OnInit {
   CalendarView = CalendarView;
   startdate:any;
   enddate:any;
-  events:CalendarEvent[]=[
-    {start:new Date(),
-      end:new Date(),
-      title:''}];
+  events:CalendarEvent[]=[];
+   
   
   constructor(private trainerObj : TrainerService, private router:Router,public datepipe: DatePipe) { }
   
@@ -75,17 +75,18 @@ export class CalenderComponent implements OnInit {
           this.startdate= this.datepipe.transform(tr.startdate,'yyyy-MM-dd','+0530');
       this.enddate=this.datepipe.transform(tr.enddate,'yyyy/MM/dd','+0530')
       this.events=[
-
+          ...this.events,
         {
           start:new Date(this.startdate),
           end:new Date(this.enddate),
-          title:tr.courseid
+          title:tr.name
       }
-    ]
+      ]
         }
       }
       else{
       this.trainer=JSON.parse(JSON.stringify(data));
+      console.log(this.trainer);
      this.startdate= this.datepipe.transform(this.trainer.startdate,'yyyy-MM-dd','+0530');
       this.enddate=this.datepipe.transform(this.trainer.enddate,'yyyy/MM/dd','+0530')
       this.events=[
@@ -95,6 +96,7 @@ export class CalenderComponent implements OnInit {
           title:this.trainer.courseid
       }
     ]}
+  
       })
   }
   
@@ -106,16 +108,9 @@ export class CalenderComponent implements OnInit {
       title:this.trainer.coursename,
       html:`<p> Time:${this.trainer.time} <br>Batchid:${this.trainer.batchid}<br>Venue:${this.trainer.meetingvenue}</p>`
     })}
-    else{
-     for(let trainer of this.trainers){
-      Swal.fire({
-        icon:'info',
-        title:trainer.coursename,
-        html:`<p> Time:${trainer.time} <br>Batchid:${trainer.batchid}<br>Venue:${trainer.meetingvenue}</p>`
-      })
-     }
+    
     }
     
   }
  
-}
+
