@@ -62,7 +62,7 @@ function router(tokverify){
         
      const id = req.params.id;
      
-        
+        var empdetails=emp[Math.floor(Math.random() * emp.length)];
          
        Trainerdata.findByIdAndUpdate(id,{$set:{"approved":true,
        "employment" :emp[Math.floor(Math.random() * emp.length)]} 
@@ -75,7 +75,7 @@ function router(tokverify){
             subject: 'Selected as a Trainer at ICT',
            
             html:`<p>'Congratulations!! you have been selected as a trainer at ICT.Please find the details below:<br>
-            Type of employment:${trainers.employment},Trainer ID:${trainers.ID}</p>`
+            Type of employment:${empdetails},Trainer ID:${trainers.ID}</p>`
           };
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
