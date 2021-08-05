@@ -69,7 +69,9 @@ export class TrainerprofilesComponent implements OnInit {
      this.trainersObj.deleteTrainer(trainer._id)
     .subscribe((data)=>{
       this.trainers= this.trainers.filter(p => p!== trainer);
-    alert("Trainer deleted");
+   })
+  // alert("Trainer deleted");
+  window.location.reload();
   }
 
   editTrainer(trainer:any)

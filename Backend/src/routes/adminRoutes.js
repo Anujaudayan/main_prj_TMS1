@@ -210,9 +210,9 @@ function router(tokverify){
          console.log("deleted successfully");
          
          }
-       res.send();
+       
    })
-
+   res.send();
 });
   
   adminrouter.get('/trainerprofiles/:id',tokverify,(req,res)=>{
@@ -268,8 +268,7 @@ res.send();
   adminrouter.put('/trainerprofiles/search',tokverify,function(req,res){
 
   var regex = new RegExp(req.body.search.text,'i');
-  
-  Trainerdata.find({$or: [{name:regex}, {skillset:regex},{ictakcourses:regex},{employment:regex}]})
+  Trainerdata.find({ $and:[{$or: [{name:regex}, {skillset:regex},{ictakcourses:regex},{employment:regex}]},{"approved":true}] })
   
   .then(function(trainers){
     res.send(trainers);

@@ -59,6 +59,7 @@ this.trainer.ictakcourses=JSON.stringify(this.trainer.ictakcourses);
   this.trainerObj.EditTrainer(this.trainer)
   .subscribe((data)=>{console.log(data)})
   alert("Trainer updated");
-  this.router.navigate(['profile']); 
+  window.location.reload();
+
 }
 } 

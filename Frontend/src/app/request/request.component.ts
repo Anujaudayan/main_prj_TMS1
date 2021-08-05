@@ -76,7 +76,7 @@ export class RequestComponent implements OnInit {
     .subscribe((data)=>{console.log(data);
      
       });
-    //this.router.navigate(['profile']);
+    this.router.navigate(['trainerprofiles']);
     localStorage.removeItem('trainerAlertMsg'); 
   };
 
@@ -87,7 +87,7 @@ export class RequestComponent implements OnInit {
       this.trainers= this.trainers.filter(b => b!== trainer);
      
       });
-    
+    window.location.reload();
     localStorage.removeItem('trainerAlertMsg'); 
   };
 

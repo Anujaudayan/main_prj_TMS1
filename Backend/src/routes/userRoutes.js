@@ -24,7 +24,7 @@ function router(tokverify,storage){
    id_final='';
      coursedata2=''; 
     userrouter.post('/form',tokverify,(req,res)=>{
-      
+      coursedata='';
         
             
                  let upload = multer({ storage: storage}).single('file');
