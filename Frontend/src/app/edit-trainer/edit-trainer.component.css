@@ -30,3 +30,7 @@ ng-select.ng-touched.ng-inavalid{
 #for2.ng-touched.ng-invalid{
   border: 1px solid red;
 }
+p{
+  color: red;
+  float: right;
+}
