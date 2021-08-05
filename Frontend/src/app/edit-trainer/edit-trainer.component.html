@@ -55,7 +55,7 @@
     <label for="inputCourses" class="form-label">ICTAK Course handling</label>
     <ng-select [items]="categories"  
                bindLabel="name"  
-               placeholder="Select Category" 
+               placeholder="{{trainer.ictakcourses}}" 
                name="ictakcourses" 
                appendTo="body"    
                [multiple]="true"  
