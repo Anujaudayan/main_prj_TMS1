@@ -6,7 +6,7 @@
   <br>
   <br>
   <h2 class="for" style="font-family: Georgia, 'Times New Roman', Times, serif;">Edit Trainer Details</h2><br>
-<form class="row g-3"  #editForm="ngForm"  (ngSubmit)="editTrainers(editForm)"  enctype="multipart/form-data" >
+<form class="row g-3"  #editForm="ngForm"  (ngSubmit)="editForm.form.valid && editTrainers(editForm)"  enctype="multipart/form-data" >
   
   <div class="col-md-4">
     <label for="inputName" class="form-label">Name</label>
@@ -52,10 +52,9 @@
     <small class="form-text text-muted" *ngIf="designation.touched && !designation.valid" class="form-label text-danger">Enter designation</small>
   </div>
   <div class="col-md-12">
-    <label for="inputCourses" class="form-label">ICTAK Course handling</label>
+    <label for="inputCourses" class="form-label">ICTAK Course handling &nbsp;<p>&nbsp;( Mandatory* )<p></label>
     <ng-select [items]="categories"  
                bindLabel="name"  
-               placeholder="{{trainer.ictakcourses}}" 
                name="ictakcourses" 
                appendTo="body"    
                [multiple]="true"  
@@ -70,7 +69,7 @@
   <br>
   
   <div class="form-group col-md-12 d-grid p-6 text-center">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid" >Submit</button>
   </div>
 </form>
 <br><br>
